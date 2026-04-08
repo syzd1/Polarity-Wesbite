@@ -18,22 +18,22 @@
     --subtle:   #444;
     --accent:   #c8c8c8;
     --border:   rgba(255,255,255,0.08);
-    --paper:    #f0f0f0;
+    --tape-h:   72px;
   }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--ink); font-family: 'Libre Baskerville', Georgia, serif; overflow-x: hidden; padding-top: 46px; }
+  body { background: var(--bg); color: var(--ink); font-family: 'Libre Baskerville', Georgia, serif; overflow-x: hidden; padding-top: var(--tape-h); }
 
   /* TICKER TAPE */
   .ticker-wrap {
     position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-    height: 46px;
+    height: var(--tape-h);
   }
-  .tradingview-widget-container { height: 46px; }
-  .tradingview-widget-container__widget { height: 46px; }
+  .tradingview-widget-container,
+  .tradingview-widget-container__widget { height: var(--tape-h) !important; }
 
   /* NAV */
   nav {
-    position: fixed; top: 46px; left: 0; right: 0; z-index: 100;
+    position: fixed; top: var(--tape-h); left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 28px 60px; transition: background 0.4s, padding 0.3s;
   }
@@ -45,7 +45,7 @@
 
   /* SECTIONS */
   section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 120px 60px; }
-  .section-label { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; text-transform: none; color: var(--ink); margin-bottom: 48px; display: flex; align-items: center; gap: 20px; }
+  .section-label { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 48px; display: flex; align-items: center; gap: 20px; }
   .section-label::before { display: none; }
 
   /* HERO */
@@ -144,30 +144,28 @@
     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
     {
       "symbols": [
-        {"proName": "NASDAQ:NVDA",   "title": "NVIDIA"},
-        {"proName": "NASDAQ:GOOGL",  "title": "Alphabet"},
-        {"proName": "NASDAQ:AAPL",   "title": "Apple"},
-        {"proName": "NASDAQ:MSFT",   "title": "Microsoft"},
-        {"proName": "NASDAQ:AMZN",   "title": "Amazon"},
-        {"proName": "NYSE:TSM",      "title": "TSMC"},
-        {"proName": "TADAWUL:2222",  "title": "Saudi Aramco"},
-        {"proName": "NASDAQ:AVGO",   "title": "Broadcom"},
-        {"proName": "NASDAQ:META",   "title": "Meta"},
-        {"proName": "NASDAQ:TSLA",   "title": "Tesla"},
-        {"proName": "NYSE:BRK.B",    "title": "Berkshire B"},
-        {"proName": "NYSE:WMT",      "title": "Walmart"},
-        {"proName": "KRX:005930",    "title": "Samsung"},
-        {"proName": "NYSE:LLY",      "title": "Eli Lilly"},
-        {"proName": "NYSE:JPM",      "title": "JPMorgan"},
-        {"proName": "NASDAQ:APP",    "title": "AppLovin"},
-        {"proName": "NYSE:PAYC",     "title": "Paycom"},
-        {"proName": "NYSE:SPOT",     "title": "Spotify"},
-        {"proName": "NYSE:LMND",     "title": "Lemonade"},
-        {"proName": "NASDAQ:TTD",    "title": "The Trade Desk"},
-        {"proName": "AMEX:SPY",      "title": "S&P 500 ETF"},
-        {"proName": "NASDAQ:QQQ",    "title": "Nasdaq ETF"},
-        {"proName": "SP:SPX",        "title": "S&P 500"},
-        {"proName": "NASDAQ:NDX",    "title": "Nasdaq 100"}
+        {"proName": "NASDAQ:NVDA",  "title": "NVIDIA"},
+        {"proName": "NASDAQ:GOOGL", "title": "Alphabet"},
+        {"proName": "NASDAQ:AAPL",  "title": "Apple"},
+        {"proName": "NASDAQ:MSFT",  "title": "Microsoft"},
+        {"proName": "NASDAQ:AMZN",  "title": "Amazon"},
+        {"proName": "NYSE:TSM",     "title": "TSMC"},
+        {"proName": "NASDAQ:AVGO",  "title": "Broadcom"},
+        {"proName": "NASDAQ:META",  "title": "Meta"},
+        {"proName": "NASDAQ:TSLA",  "title": "Tesla"},
+        {"proName": "NYSE:BRK.B",   "title": "Berkshire B"},
+        {"proName": "NYSE:WMT",     "title": "Walmart"},
+        {"proName": "NYSE:LLY",     "title": "Eli Lilly"},
+        {"proName": "NYSE:JPM",     "title": "JPMorgan"},
+        {"proName": "NASDAQ:APP",   "title": "AppLovin"},
+        {"proName": "NYSE:PAYC",    "title": "Paycom"},
+        {"proName": "NYSE:SPOT",    "title": "Spotify"},
+        {"proName": "NYSE:LMND",    "title": "Lemonade"},
+        {"proName": "NASDAQ:TTD",   "title": "The Trade Desk"},
+        {"proName": "AMEX:SPY",     "title": "S&P 500 ETF"},
+        {"proName": "NASDAQ:QQQ",   "title": "Nasdaq ETF"},
+        {"proName": "SP:SPX",       "title": "S&P 500"},
+        {"proName": "NASDAQ:NDX",   "title": "Nasdaq 100"}
       ],
       "showSymbolLogo": true,
       "isTransparent": false,
