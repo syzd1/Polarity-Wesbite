@@ -149,7 +149,6 @@
 <!-- HERO -->
 <section id="hero">
   <h1 class="hero-title">Polarity Long/Short Equity</h1>
-
   <div class="hero-divider"></div>
   <p class="hero-tagline">We succeed through detailed analysis in equities to find outliers others don't.</p>
 </section>
@@ -186,40 +185,40 @@
   <div class="section-label reveal">On Our Radar</div>
   <p class="radar-intro reveal">Names we are actively researching and monitoring. Click any to learn more.</p>
   <div class="stocks-grid reveal">
+    <div class="stock-card" onclick="openModal('payc')">
+      <div class="stock-ticker">PAYC</div>
+      <div class="stock-name">Paycom</div>
+      <p class="stock-desc">Cloud-based human capital management platform delivering end-to-end payroll and HR software for medium to large enterprises across the US.</p>
+      <div class="stock-arrow">View details →</div>
+    </div>
+    <div class="stock-card" onclick="openModal('spot')">
+      <div class="stock-ticker">SPOT</div>
+      <div class="stock-name">Spotify</div>
+      <p class="stock-desc">The world's largest audio streaming platform, offering music, podcasts, and audiobooks to over 600 million users across more than 180 markets.</p>
+      <div class="stock-arrow">View details →</div>
+    </div>
+    <div class="stock-card" onclick="openModal('ttd')">
+      <div class="stock-ticker">TTD</div>
+      <div class="stock-name">The Trade Desk</div>
+      <p class="stock-desc">Independent demand-side platform enabling advertisers to plan, manage, and optimise data-driven digital advertising campaigns across all channels.</p>
+      <div class="stock-arrow">View details →</div>
+    </div>
     <div class="stock-card" onclick="openModal('app')">
       <div class="stock-ticker">APP</div>
       <div class="stock-name">AppLovin</div>
       <p class="stock-desc">End-to-end AI-powered advertising and mobile technology platform helping businesses connect with their ideal customers globally.</p>
       <div class="stock-arrow">View details →</div>
     </div>
+    <div class="stock-card" onclick="openModal('lmnd')">
+      <div class="stock-ticker">LMND</div>
+      <div class="stock-name">Lemonade</div>
+      <p class="stock-desc">AI-native insurance company offering renters, homeowners, pet, auto, and life insurance, using machine learning to price risk and handle claims instantly.</p>
+      <div class="stock-arrow">View details →</div>
+    </div>
     <div class="stock-card" onclick="openModal('aapl')">
       <div class="stock-ticker">AAPL</div>
       <div class="stock-name">Apple</div>
       <p class="stock-desc">Designs, manufactures, and markets consumer electronics, software, and services including iPhone, Mac, iPad, and a growing subscription ecosystem.</p>
-      <div class="stock-arrow">View details →</div>
-    </div>
-    <div class="stock-card" onclick="openModal('shop')">
-      <div class="stock-ticker">SHOP</div>
-      <div class="stock-name">Shopify</div>
-      <p class="stock-desc">Commerce technology company powering millions of merchants worldwide across web, mobile, retail, and marketplace channels.</p>
-      <div class="stock-arrow">View details →</div>
-    </div>
-    <div class="stock-card" onclick="openModal('zm')">
-      <div class="stock-ticker">ZM</div>
-      <div class="stock-name">Zoom</div>
-      <p class="stock-desc">AI-first work platform for human connection, offering Meetings, Phone, Team Chat, and Contact Center solutions for enterprises and individuals.</p>
-      <div class="stock-arrow">View details →</div>
-    </div>
-    <div class="stock-card" onclick="openModal('googl')">
-      <div class="stock-ticker">GOOGL</div>
-      <div class="stock-name">Alphabet</div>
-      <p class="stock-desc">Parent of Google, offering Search, YouTube, Android, and Google Cloud — at the frontier of AI with a full-stack approach across services and infrastructure.</p>
-      <div class="stock-arrow">View details →</div>
-    </div>
-    <div class="stock-card" onclick="openModal('mstr')">
-      <div class="stock-ticker">MSTR</div>
-      <div class="stock-name">Strategy Inc.</div>
-      <p class="stock-desc">Bitcoin treasury company and the world's largest corporate holder of Bitcoin, also providing AI-powered enterprise analytics software.</p>
       <div class="stock-arrow">View details →</div>
     </div>
   </div>
@@ -230,7 +229,7 @@
   <div class="section-label reveal">Contact</div>
   <div class="contact-grid">
     <div class="contact-left reveal">
-<p>Fill in your details and we will be in touch as soon as possible. Thank you.</p>
+      <p>Fill in your details and we will be in touch as soon as possible. Thank you.</p>
     </div>
     <form class="contact-form reveal" id="lpForm">
       <div class="form-row">
@@ -286,6 +285,39 @@
   });
 
   const stocks = {
+    payc: {
+      ticker: 'PAYC', name: 'Paycom Software',
+      stats: [
+        { label: 'CEO', val: 'Chad Richison' },
+        { label: 'Founded', val: '1998' },
+        { label: 'Headquarters', val: 'Oklahoma City, OK' },
+        { label: 'Employees', val: '~6,700' },
+        { label: 'Exchange', val: 'NYSE' },
+      ],
+      desc: 'Paycom is a leading cloud-based human capital management software provider. Founded by Chad Richison, the company offers a single, end-to-end platform covering payroll, talent acquisition, HR management, and time tracking. Paycom pioneered the concept of employee self-service, most notably through its Beti product, which empowers employees to run their own payroll. The company serves mid-to-large businesses across the US and is known for its high retention rates and strong free cash flow generation.'
+    },
+    spot: {
+      ticker: 'SPOT', name: 'Spotify Technology',
+      stats: [
+        { label: 'CEO', val: 'Daniel Ek' },
+        { label: 'Founded', val: '2006' },
+        { label: 'Headquarters', val: 'Stockholm, Sweden' },
+        { label: 'Employees', val: '~9,000' },
+        { label: 'Exchange', val: 'NYSE' },
+      ],
+      desc: 'Spotify is the world\'s largest audio streaming platform, with over 600 million monthly active users and more than 250 million paid subscribers. Founded by Daniel Ek and Martin Lorentzon in Stockholm, the company has expanded well beyond music into podcasts and audiobooks, positioning itself as the dominant destination for all audio content. After years of margin pressure, Spotify has significantly improved its profitability profile and is now focused on monetising its creator ecosystem and expanding gross margins through higher-margin content formats.'
+    },
+    ttd: {
+      ticker: 'TTD', name: 'The Trade Desk',
+      stats: [
+        { label: 'CEO', val: 'Jeff Green' },
+        { label: 'Founded', val: '2009' },
+        { label: 'Headquarters', val: 'Ventura, CA' },
+        { label: 'Employees', val: '~3,000' },
+        { label: 'Exchange', val: 'NASDAQ' },
+      ],
+      desc: 'The Trade Desk is an independent demand-side platform that enables advertisers to plan, manage, and optimise digital advertising campaigns across display, video, audio, connected TV, and social channels. Founded by Jeff Green, the company has become the leading independent alternative to walled gardens like Google and Meta. Its Unified ID 2.0 initiative is positioning The Trade Desk at the centre of the open internet\'s identity infrastructure as third-party cookies are phased out. Connected TV advertising is a major growth driver.'
+    },
     app: {
       ticker: 'APP', name: 'AppLovin',
       stats: [
@@ -297,6 +329,17 @@
       ],
       desc: 'AppLovin operates a leading AI-powered advertising platform. Its core engine, Axon, uses machine learning to match advertisers with mobile users at scale. Originally a mobile gaming publisher, the company has pivoted toward pure-play advertising technology, achieving exceptional revenue growth and margin expansion. Its software segment drives the bulk of profitability, with adjusted EBITDA margins exceeding 80%.'
     },
+    lmnd: {
+      ticker: 'LMND', name: 'Lemonade Inc.',
+      stats: [
+        { label: 'CEO', val: 'Daniel Schreiber' },
+        { label: 'Founded', val: '2015' },
+        { label: 'Headquarters', val: 'New York, NY' },
+        { label: 'Employees', val: '~1,000' },
+        { label: 'Exchange', val: 'NYSE' },
+      ],
+      desc: 'Lemonade is an AI-native insurance company that has reimagined the insurance model from the ground up. Using artificial intelligence and behavioural economics, it offers renters, homeowners, pet, auto, and life insurance products directly to consumers. Its proprietary AI, Maya and Jim, handle everything from onboarding to claims in seconds. Lemonade operates on a flat-fee model, donating unclaimed premiums to charities chosen by customers — a structure designed to align incentives and reduce fraud. The company is in growth mode, expanding its product suite and geographic footprint.'
+    },
     aapl: {
       ticker: 'AAPL', name: 'Apple Inc.',
       stats: [
@@ -307,50 +350,6 @@
         { label: 'Exchange', val: 'NASDAQ' },
       ],
       desc: 'Apple is one of the most valuable companies in history. Under Tim Cook, the company has built a formidable services segment — including the App Store, Apple Music, iCloud, and Apple TV+ — that now produces over $100 billion in revenue annually. The iPhone remains the cornerstone product, commanding a loyal global installed base, while Apple Intelligence marks the company\'s entry into on-device AI.'
-    },
-    shop: {
-      ticker: 'SHOP', name: 'Shopify',
-      stats: [
-        { label: 'CEO', val: 'Tobias Lütke' },
-        { label: 'Founded', val: '2006' },
-        { label: 'Headquarters', val: 'Ottawa, Canada' },
-        { label: 'Employees', val: '~8,000' },
-        { label: 'Exchange', val: 'NYSE / TSX' },
-      ],
-      desc: 'Shopify is the infrastructure layer of modern commerce, powering over 5 million merchants globally. Founded by Tobias Lütke from a failed snowboard shop, it has grown into a platform processing over $292 billion in gross merchandise volume annually. It holds over 12% of US e-commerce market share and is aggressively expanding internationally, increasingly embedding financial services, payments, and logistics into its merchant ecosystem.'
-    },
-    zm: {
-      ticker: 'ZM', name: 'Zoom Communications',
-      stats: [
-        { label: 'CEO', val: 'Eric Yuan' },
-        { label: 'Founded', val: '2011' },
-        { label: 'Headquarters', val: 'San Jose, CA' },
-        { label: 'Employees', val: '~7,400' },
-        { label: 'Exchange', val: 'NASDAQ' },
-      ],
-      desc: 'Zoom rose to global prominence during the pandemic and has since repositioned itself as an AI-first enterprise communications platform. Founded by Eric Yuan, formerly a VP at Cisco WebEx, Zoom now offers a broad suite including Phone, Team Chat, Contact Center, and AI Companion. The company is profitable with a strong free cash flow profile and is betting its next growth phase on AI-driven enterprise expansion.'
-    },
-    googl: {
-      ticker: 'GOOGL', name: 'Alphabet Inc.',
-      stats: [
-        { label: 'CEO', val: 'Sundar Pichai' },
-        { label: 'Founded', val: '1998' },
-        { label: 'Headquarters', val: 'Mountain View, CA' },
-        { label: 'Employees', val: '~187,000' },
-        { label: 'Exchange', val: 'NASDAQ' },
-      ],
-      desc: 'Alphabet is the parent company of Google, the world\'s dominant search engine, and a growing portfolio of businesses including YouTube, Android, Waymo, and Google Cloud. Under CEO Sundar Pichai, the company has accelerated its AI transformation with Gemini and DeepMind. Google Cloud is growing at 28% year-on-year and approaching a $50 billion annual run rate. Alphabet recently delivered its first-ever $100 billion revenue quarter.'
-    },
-    mstr: {
-      ticker: 'MSTR', name: 'Strategy Inc.',
-      stats: [
-        { label: 'Executive Chairman', val: 'Michael Saylor' },
-        { label: 'Founded', val: '1989' },
-        { label: 'Headquarters', val: 'Tysons Corner, VA' },
-        { label: 'Employees', val: '~1,000' },
-        { label: 'Exchange', val: 'NASDAQ' },
-      ],
-      desc: 'Formerly known as MicroStrategy, Strategy Inc. has reinvented itself as the world\'s first Bitcoin Treasury Company and the largest corporate holder of Bitcoin, with over 650,000 BTC on its balance sheet. Co-founded by Michael Saylor in 1989, the company continues to operate an enterprise analytics software business while using capital markets to systematically accumulate Bitcoin. It is widely regarded as a leveraged proxy for Bitcoin.'
     }
   };
 
