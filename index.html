@@ -19,9 +19,10 @@
     --accent:   #c8c8c8;
     --border:   rgba(255,255,255,0.08);
     --tape-h:   72px;
+    --nav-h:    80px;
   }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--ink); font-family: 'Libre Baskerville', Georgia, serif; overflow-x: hidden; padding-top: var(--tape-h); }
+  body { background: var(--bg); color: var(--ink); font-family: 'Libre Baskerville', Georgia, serif; overflow-x: hidden; padding-top: calc(var(--tape-h) + var(--nav-h)); }
 
   /* TICKER TAPE */
   .ticker-wrap {
@@ -35,9 +36,12 @@
   nav {
     position: fixed; top: var(--tape-h); left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 28px 60px; transition: background 0.4s, padding 0.3s;
+    height: var(--nav-h);
+    padding: 0 60px;
+    background: rgba(22,22,22,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
   }
-  nav.scrolled { background: rgba(22,22,22,0.96); backdrop-filter: blur(12px); padding: 18px 60px; border-bottom: 1px solid var(--border); }
   .nav-logo { font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); font-weight: 700; cursor: pointer; }
   .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
   .nav-links a { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
@@ -45,7 +49,7 @@
 
   /* SECTIONS */
   section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 120px 60px; }
-  .section-label { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 48px; display: flex; align-items: center; gap: 20px; }
+  .section-label { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 48px; }
   .section-label::before { display: none; }
 
   /* HERO */
@@ -56,7 +60,7 @@
 
   /* ABOUT */
   #mission { background: var(--bg); }
-  .mission-text { max-width: 860px; font-size: clamp(15px, 1.4vw, 17px); font-weight: 400; line-height: 1.9; color: var(--accent); }
+  .mission-text { max-width: 860px; font-size: clamp(15px, 1.4vw, 17px); line-height: 1.9; color: var(--accent); }
   .mission-text p + p { margin-top: 28px; }
 
   /* STRATEGY */
@@ -123,7 +127,7 @@
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
   @media (max-width: 900px) {
-    nav { padding: 22px 28px; } nav.scrolled { padding: 16px 28px; } .nav-links { gap: 20px; }
+    nav { padding: 0 28px; } .nav-links { gap: 20px; }
     section { padding: 90px 28px; } .stocks-grid { grid-template-columns: 1fr 1fr; }
     .contact-grid { grid-template-columns: 1fr; gap: 48px; } .form-row { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 12px; text-align: center; } .footer-disc { text-align: center; }
@@ -169,7 +173,7 @@
       ],
       "showSymbolLogo": true,
       "isTransparent": false,
-      "displayMode": "adaptive",
+      "displayMode": "regular",
       "colorTheme": "dark",
       "locale": "en"
     }
@@ -177,6 +181,7 @@
   </div>
 </div>
 
+<!-- NAV -->
 <nav id="nav">
   <span class="nav-logo" onclick="scrollToSection('hero')">Polarity</span>
   <ul class="nav-links">
