@@ -33,7 +33,7 @@
   .tradingview-widget-container { height: var(--tape-h) !important; overflow: hidden; }
   .tradingview-widget-container__widget { height: var(--tape-h) !important; }
 
-  /* NAV — sits flush under tape, no gap */
+  /* NAV */
   nav {
     position: fixed;
     top: var(--tape-h);
@@ -45,6 +45,14 @@
     background: rgba(22,22,22,0.98);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
+    transform: translateY(0);
+    transition: transform 0.35s ease, opacity 0.35s ease;
+    opacity: 1;
+  }
+  nav.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
   }
   .nav-logo { font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); font-weight: 700; cursor: pointer; }
   .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
@@ -318,17 +326,37 @@
 <script>
   function scrollToSection(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
 
-  // Dynamically measure the ticker tape height and reposition nav
+  // Dynamically measure ticker tape height and reposition nav
   window.addEventListener('load', () => {
     const tape = document.querySelector('.ticker-wrap');
-    const nav = document.getElementById('nav');
-    const actualH = tape.getBoundingClientRect().height;
-    nav.style.top = actualH + 'px';
-    document.body.style.paddingTop = (actualH + nav.getBoundingClientRect().height) + 'px';
+    const nav  = document.getElementById('nav');
+    const tapeH = tape.getBoundingClientRect().height;
+    const navH  = nav.getBoundingClientRect().height;
+    nav.style.top = tapeH + 'px';
+    document.body.style.paddingTop = (tapeH + navH) + 'px';
   });
 
+  // Hide nav on scroll down, show on scroll up
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+  let lastScroll = 0;
+  const heroHeight = () => document.getElementById('hero').getBoundingClientRect().height;
+
+  window.addEventListener('scroll', () => {
+    const current = window.scrollY;
+    const tapeH = document.querySelector('.ticker-wrap').getBoundingClientRect().height;
+
+    if (current <= tapeH + 10) {
+      // Near the very top — show nav
+      nav.classList.remove('hidden');
+    } else if (current > lastScroll) {
+      // Scrolling down — hide nav
+      nav.classList.add('hidden');
+    } else {
+      // Scrolling up — show nav
+      nav.classList.remove('hidden');
+    }
+    lastScroll = current <= 0 ? 0 : current;
+  });
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
