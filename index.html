@@ -18,8 +18,8 @@
     --subtle:   #444;
     --accent:   #c8c8c8;
     --border:   rgba(255,255,255,0.08);
-    --tape-h:   72px;
-    --nav-h:    80px;
+    --tape-h:   37px;
+    --nav-h:    72px;
   }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--ink); font-family: 'Libre Baskerville', Georgia, serif; overflow-x: hidden; padding-top: calc(var(--tape-h) + var(--nav-h)); }
@@ -28,17 +28,21 @@
   .ticker-wrap {
     position: fixed; top: 0; left: 0; right: 0; z-index: 200;
     height: var(--tape-h);
+    overflow: hidden;
   }
-  .tradingview-widget-container,
+  .tradingview-widget-container { height: var(--tape-h) !important; overflow: hidden; }
   .tradingview-widget-container__widget { height: var(--tape-h) !important; }
 
-  /* NAV */
+  /* NAV — sits flush under tape, no gap */
   nav {
-    position: fixed; top: var(--tape-h); left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
+    position: fixed;
+    top: var(--tape-h);
+    left: 0; right: 0;
+    z-index: 100;
     height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
     padding: 0 60px;
-    background: rgba(22,22,22,0.96);
+    background: rgba(22,22,22,0.98);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
@@ -313,6 +317,15 @@
 
 <script>
   function scrollToSection(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
+
+  // Dynamically measure the ticker tape height and reposition nav
+  window.addEventListener('load', () => {
+    const tape = document.querySelector('.ticker-wrap');
+    const nav = document.getElementById('nav');
+    const actualH = tape.getBoundingClientRect().height;
+    nav.style.top = actualH + 'px';
+    document.body.style.paddingTop = (actualH + nav.getBoundingClientRect().height) + 'px';
+  });
 
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
